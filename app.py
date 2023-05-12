@@ -89,8 +89,7 @@ except Exception as e:
         st.markdown("Ask a question related to the video content:")
         question = st.text_input("")
         submit_button = st.form_submit_button(label='Ask')
-        if st.session_state["video_loaded"]:
-            newchatBtn = st.button("New Chat")
+        newchatBtn = st.button("New Chat")
         if newchatBtn:
             st.session_state["chat_history"] = []
             st.session_state["video_url"] = ""
