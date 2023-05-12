@@ -30,7 +30,7 @@ with header:
     st.markdown(""" 
         Welcome to my unique ChatBot powered by LangChain, OpenAI, and Streamlit. This is a project for Makers, created with lots of ❤️ and ☕.
         This bot is not your ordinary bot, it's a super bot that uses the transcript of a YouTube video of your choice to answer your questions. 
-        All you have to do is provide a YouTube video URL, and then you can ask any questions related to the video content.
+        All you have to do is provide a YouTube video url includint the id, and then you can ask any questions related to the video content.
         Let's make learning fun and interactive!
     """) 
     # New chat button has been moved to the header for better accessibility
@@ -38,9 +38,10 @@ with header:
 # Wrap transcript loading and splitting in try/except block
 try:
     if not st.session_state["video_loaded"]:
-        st.session_state["video_url"] = st.text_input("Please enter the YouTube video URL: ")
-        if st.button('Load video'):
-            if st.session_state["video_url"]:
+        with st.form('Load video'):
+            st.session_state["video_url"] = st.text_input("Please enter the YouTube video URL: ")
+            submitted = st.form_submit_button("Load Video")
+            if submitted:
                 with st.spinner('Loading video transcript...'):
                     transcript = load_transcript(st.session_state["video_url"])
                     docs = split_transcript(transcript)
@@ -58,7 +59,7 @@ try:
                     combine_docs_chain=doc_chain,
                 )
             else:
-                st.warning("Please provide a valid YouTube URL.")
+                st.warning("Please provide a valid YouTube URL, make sure you are including the video id")
     else:
         st.success("Video transcript is already loaded. You can start asking questions.")
 
@@ -81,7 +82,7 @@ try:
                     for user, bot in st.session_state["chat_history"]:
                         st.markdown(f'**User**: {user}')
                         st.markdown(f'<span style="color:green">**Bot**: {bot}</span>', unsafe_allow_html=True)
-        if st.button("New Chat"):
+        if st.button("Start new chat"):
             st.session_state["chat_history"] = []
             st.session_state["video_url"] = ""
             st.session_state["video_loaded"] = False
