@@ -55,7 +55,7 @@ try:
                 st.success("Video transcript loaded successfully!")
                 st.session_state["video_loaded"] = True
 
-               llm = OpenAI(temperature=0.2)
+                llm = OpenAI(temperature=0.2)
                 question_generator = LLMChain(llm=llm, prompt=CONDENSE_PROMPT)
                 doc_chain = load_qa_chain(llm, prompt=QA_PROMPT)
                 st.session_state["chain"] = ConversationalRetrievalChain(
