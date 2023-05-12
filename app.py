@@ -34,13 +34,6 @@ with header:
         Let's make learning fun and interactive!
     """) 
     # New chat button has been moved to the header for better accessibility
-if st.session_state["video_loaded"]:
-    newchatBtn = st.button("New Chat")
-    if newchatBtn:
-        st.session_state["chat_history"] = []
-        st.session_state["video_url"] = ""
-        st.session_state["video_loaded"] = False
-        st.session_state["chain"] = None
 
 # Wrap transcript loading and splitting in try/except block
 try:
@@ -96,6 +89,13 @@ except Exception as e:
         st.markdown("Ask a question related to the video content:")
         question = st.text_input("")
         submit_button = st.form_submit_button(label='Ask')
+        if st.session_state["video_loaded"]:
+            newchatBtn = st.button("New Chat")
+        if newchatBtn:
+            st.session_state["chat_history"] = []
+            st.session_state["video_url"] = ""
+            st.session_state["video_loaded"] = False
+            st.session_state["chain"] = None
 
         if submit_button:
             if question:
