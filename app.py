@@ -82,8 +82,8 @@ if st.session_state["chain"] is not None:
         if submit_button:
             if question:
                 with st.spinner('Generating response...'):
-                    response = st.session_state["chain"].ask(question)
-                    st.session_state["chat_history"].append({'user': question, 'bot': response})
+                   response = st.session_state["chain"]({"question": user_question, "chat_history":st.session_state["chat_history"]})
+                   st.session_state["chat_history"].append({'user': question, 'bot': response})
             else:
                 st.warning("Please enter a question before pressing the Ask button.")
 
