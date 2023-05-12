@@ -112,6 +112,8 @@ except Exception as e:
             st.markdown(f"**ChatBot:** {chat['bot']}")  
 
 
-
-
-
+# Footer
+st.markdown("""
+---Built with ❤️ by [Juan Arfuch](https://github.com/juanarfuch) using [Streamlit](https://streamlit.io), [OpenAI](https://openai.com), and [LangChain](https://langchain.ai)
+This is a project for Makers! Check out my [GitHub](https://github.com/juanarfuch) for more cool projects!
+""")
