@@ -22,11 +22,18 @@ if "video_loaded" not in st.session_state:
 if "chain" not in st.session_state:
     st.session_state["chain"] = None
 
-# Sidebar options
-with st.sidebar.expander("🛠️ Settings ", expanded=False):
-    # Add some explanation here
-    st.markdown("""To start a new chat, click the button below. This will clear your chat history and allow you to start a new conversation.""")
-    # Option to start a new chat
+# Create a container for the header to make it more accessible
+header = st.container()
+
+with header:
+    st.title("🤖 Chat with your videos --By Juan Arfuch")
+    st.markdown(""" 
+        Welcome to my unique ChatBot powered by LangChain, OpenAI, and Streamlit. This is a project for Makers, created with lots of ❤️ and ☕.
+        This bot is not your ordinary bot, it's a super bot that uses the transcript of a YouTube video of your choice to answer your questions. 
+        All you have to do is provide a YouTube video URL, and then you can ask any questions related to the video content.
+        Let's make learning fun and interactive!
+    """) 
+    # New chat button has been moved to the header for better accessibility
     if st.button("New Chat"):
         st.session_state["chat_history"] = []
         st.session_state["video_url"] = ""
