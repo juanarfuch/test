@@ -1,0 +1,8 @@
+flask
+langchain
+youtube-transcript-api
+python-dotenv
+langchain
+openai
+faiss-cpu
+streamlit-chat
