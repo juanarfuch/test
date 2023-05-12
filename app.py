@@ -69,12 +69,17 @@ except Exception as e:
 try: 
     if st.session_state["chain"] is not None:
         user_question = st.text_input("Enter your question related to the video content")
+        if st.button("New Chat"):
+            st.session_state["chat_history"] = []
+            st.session_state["video_url"] = ""
+            st.session_state["video_loaded"] = False
+            st.session_state["chain"] = None
         if st.button('Submit question'):
             if user_question and st.session_state["video_loaded"] and st.session_state["chain"]:
                 with st.spinner('Processing your question...'):
                     result = st.session_state["chain"]({"question": user_question, "chat_history": st.session_state["chat_history"]})
                     st.session_state["chat_history"].append((user_question, result['answer']))
-
+        
                 # Display the conversation history
                 with st.expander("Conversation History", expanded=True):
                     for user, bot in st.session_state["chat_history"]:
@@ -89,12 +94,6 @@ except Exception as e:
         st.markdown("Ask a question related to the video content:")
         question = st.text_input("")
         submit_button = st.form_submit_button(label='Ask')
-        newchatBtn = st.button("New Chat")
-        if newchatBtn:
-            st.session_state["chat_history"] = []
-            st.session_state["video_url"] = ""
-            st.session_state["video_loaded"] = False
-            st.session_state["chain"] = None
 
         if submit_button:
             if question:
