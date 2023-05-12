@@ -2,7 +2,7 @@
 import streamlit as st
 from utils.video_processing import load_transcript, split_transcript
 from utils.database import create_db
-from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chains import LLMChain
@@ -56,9 +56,9 @@ try:
                 st.success("Video transcript loaded successfully!")
                 st.session_state["video_loaded"] = True
 
-                llm = OpenAI(temperature=0.2)
-                question_generator = LLMChain(llm=llm, prompt=CONDENSE_PROMPT)
-                doc_chain = load_qa_chain(llm, prompt=QA_PROMPT)
+                ll= ChatOpenAI(temperature=0.2)
+                question_generator = LLMChain(llm=chat, prompt=CONDENSE_PROMPT)
+                doc_chain = load_qa_chain(chat, prompt=QA_PROMPT, chain_type="stuff")
                 st.session_state["chain"] = ConversationalRetrievalChain(
                     retriever=db,
                     question_generator=question_generator,
@@ -66,7 +66,6 @@ try:
                 )
             else:
                 st.warning("Please provide a valid YouTube URL.")
-
     else:
         st.success("Video transcript is already loaded. You can start asking questions.")
 
