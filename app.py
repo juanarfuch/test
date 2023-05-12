@@ -86,7 +86,7 @@ if st.session_state["chain"] is not None:
             with st.expander("Conversation History", expanded=True):
                 for user, bot in st.session_state["chat_history"]:
                     st.markdown(f'**User**: {user}')
-                    st.markdown(f'<span style="color:green">**Bot**: {bot}</span>', unsafe_allow_html=True)
+                    st.markdown(f'<span style="color:green">**Bot**: {bot}</span>', unsafe_allow_html=True)                
 except Exception as e:
     st.error(f'An error occurred: {e}')
     st.markdown("""
