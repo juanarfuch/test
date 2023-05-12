@@ -51,7 +51,7 @@ try:
                 st.session_state["video_loaded"] = True
                 ##Creating the conversational retrieval chain###
                 ###Setting the chat model
-                chat= ChatOpenAI(temperature=0.2, chat_model="gpt-3.5-turbo")
+                chat= ChatOpenAI(temperature=0.2, model_name="gpt-3.5-turbo")
                 question_generator = LLMChain(llm=chat, prompt=CONDENSE_PROMPT)
                 doc_chain = load_qa_chain(chat, prompt=QA_PROMPT, chain_type="stuff")
                 st.session_state["chain"] = ConversationalRetrievalChain(
