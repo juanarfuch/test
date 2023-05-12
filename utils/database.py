@@ -2,9 +2,8 @@ import logging
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 import streamlit as st
-
-
-embeddings = OpenAIEmbeddings(openaiapikey = st.secrets["OPENAI_API_KEY"])
+openaiapikey = st.secrets["OPENAI_API_KEY"]
+embeddings = OpenAIEmbeddings()
 logger = logging.getLogger(__name__)
 
 def create_db(docs, embeddings=embeddings):
