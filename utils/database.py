@@ -3,7 +3,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 import streamlit as st
 openaiapikey = st.secrets["OPENAI_API_KEY"]
-embeddings = OpenAIEmbeddings(openaiapikey)
+embeddings = OpenAIEmbeddings()
 logger = logging.getLogger(__name__)
 
 def create_db(docs, embeddings=embeddings):
