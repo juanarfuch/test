@@ -1,4 +1,4 @@
-flask
+pytube
 langchain
 youtube-transcript-api
 python-dotenv
