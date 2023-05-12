@@ -34,20 +34,13 @@ with header:
         Let's make learning fun and interactive!
     """) 
     # New chat button has been moved to the header for better accessibility
-    if st.button("New Chat"):
+if st.session_state["video_loaded"]:
+    newchatBtn = st.button("New Chat")
+    if newchatBtn:
         st.session_state["chat_history"] = []
         st.session_state["video_url"] = ""
         st.session_state["video_loaded"] = False
         st.session_state["chain"] = None
-
-# Set up the Streamlit app layout
-st.title("🤖 Chat with your videos --By Juan Arfuch")
-st.markdown(""" 
-       Welcome to my unique ChatBot powered by LangChain, OpenAI, and Streamlit. This is a project for Makers, created with lots of ❤️ and ☕.
-    This bot is not your ordinary bot, it's a super bot that uses the transcript of a YouTube video of your choice to answer your questions. 
-    All you have to do is provide a YouTube video URL, and then you can ask any questions related to the video content.
-    Let's make learning fun and interactive!
-""") 
 
 # Wrap transcript loading and splitting in try/except block
 try:
