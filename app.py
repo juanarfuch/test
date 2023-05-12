@@ -75,19 +75,19 @@ except Exception as e:
 
 # Ask questions and display responses
 try: 
-        if st.session_state["chain"] is not None:
-        user_question = st.text_input("Enter your question related to the video content")
-        if st.button('Submit question'):
-            if user_question and st.session_state["video_loaded"] and st.session_state["chain"]:
-                with st.spinner('Processing your question...'):
-                    result = st.session_state["chain"]({"question": user_question, "chat_history": st.session_state["chat_history"]})
-                    st.session_state["chat_history"].append((user_question, result['answer']))
+    if st.session_state["chain"] is not None:
+    user_question = st.text_input("Enter your question related to the video content")
+    if st.button('Submit question'):
+        if user_question and st.session_state["video_loaded"] and st.session_state["chain"]:
+            with st.spinner('Processing your question...'):
+                result = st.session_state["chain"]({"question": user_question, "chat_history": st.session_state["chat_history"]})
+                st.session_state["chat_history"].append((user_question, result['answer']))
 
-                # Display the conversation history
-                with st.expander("Conversation History", expanded=True):
-                    for user, bot in st.session_state["chat_history"]:
-                        st.markdown(f'**User**: {user}')
-                        st.markdown(f'<span style="color:green">**Bot**: {bot}</span>', unsafe_allow_html=True)
+            # Display the conversation history
+            with st.expander("Conversation History", expanded=True):
+                for user, bot in st.session_state["chat_history"]:
+                    st.markdown(f'**User**: {user}')
+                    st.markdown(f'<span style="color:green">**Bot**: {bot}</span>', unsafe_allow_html=True)
 except Exception as e:
     st.error(f'An error occurred: {e}')
     st.markdown("""
