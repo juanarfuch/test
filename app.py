@@ -38,9 +38,10 @@ with header:
 # Wrap transcript loading and splitting in try/except block
 try:
     if not st.session_state["video_loaded"]:
-        st.session_state["video_url"] = st.text_input("Please enter the YouTube video URL: ")
-        if st.button('Load video'):
-            if st.session_state["video_url"]:
+        with st.form('Load video'):
+            st.session_state["video_url"] = st.text_input("Please enter the YouTube video URL: ")
+            submitted = st.form_submit_button("Load Video")
+            if submitted:
                 with st.spinner('Loading video transcript...'):
                     transcript = load_transcript(st.session_state["video_url"])
                     docs = split_transcript(transcript)
