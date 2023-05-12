@@ -2,7 +2,8 @@
 import streamlit as st
 from utils.video_processing import load_transcript, split_transcript
 from utils.database import create_db
-from langchain.chat_models import ChatOpenAI
+##from langchain.chat_models import ChatOpenAI
+from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chains import LLMChain
@@ -51,7 +52,7 @@ try:
                 st.session_state["video_loaded"] = True
                 ##Creating the conversational retrieval chain###
                 ###Setting the chat model
-                chat= ChatOpenAI(temperature=0.2, model_name="gpt-3.5-turbo")
+                chat= ChatOpenAI(temperature=0.2)
                 question_generator = LLMChain(llm=chat, prompt=CONDENSE_PROMPT)
                 doc_chain = load_qa_chain(chat, prompt=QA_PROMPT)
                 st.session_state["chain"] = ConversationalRetrievalChain(
