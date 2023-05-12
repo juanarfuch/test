@@ -2,7 +2,6 @@ import logging
 from utils.youtubePers import YoutubeLoading
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 logger = logging.getLogger(__name__)
-openaiapikey = st.secrets["OPENAI_API_KEY"]
 
 def load_transcript(url, add_video_info=True):
     try:
