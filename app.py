@@ -56,7 +56,7 @@ try:
                 st.success("Video transcript loaded successfully!")
                 st.session_state["video_loaded"] = True
 
-                ll= ChatOpenAI(temperature=0.2)
+                chat= ChatOpenAI(temperature=0.2)
                 question_generator = LLMChain(llm=chat, prompt=CONDENSE_PROMPT)
                 doc_chain = load_qa_chain(chat, prompt=QA_PROMPT, chain_type="stuff")
                 st.session_state["chain"] = ConversationalRetrievalChain(
