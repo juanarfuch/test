@@ -10,7 +10,7 @@ from utils.prompts import CONDENSE_PROMPT, QA_PROMPT
 openaiapikey = st.secrets["OPENAI_API_KEY"]
 
 # Set Streamlit page configuration
-st.set_page_config(page_title='🧠MAKERS TEST🤖', layout='wide')
+st.set_page_config(page_title='PRUEBA', layout='wide')
 
 # Initialize session states
 if "chat_history" not in st.session_state:
