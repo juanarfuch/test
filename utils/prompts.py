@@ -8,10 +8,12 @@ CONDENSE_PROMPT ="""Given the following conversation and a follow up question, r
         Standalone question:"""
 
 
-QA_PROMPT = """As an AI, answer this transcript-based question. If uncertain or off-topic, admit it.
+template = QA_PROMPT = """As an AI, answer this transcript-based question. If uncertain or off-topic, admit it.
 
 Context: {context}
 
 Question: {question}
 
 Answer in markdown. If unsure, say "Uncertain based on the transcript". Answer: """
+
+QA_PROMPT=PromptTemplate(template=template, input_variables=["question", "context"])

@@ -7,3 +7,4 @@ openai
 faiss-cpu
 streamlit-chat
 tiktoken
+watchdog-dog

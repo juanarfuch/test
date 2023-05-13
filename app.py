@@ -12,7 +12,7 @@ from utils.prompts import CONDENSE_PROMPT, QA_PROMPT
 openaiapikey = st.secrets["OPENAI_API_KEY"]
 
 # Set Streamlit page configuration
-st.set_page_config(page_title='🧠 TEST🤖', layout='wide')
+st.set_page_config(page_title='🧠TEST🤖', layout='wide')
 
 # Initialize session states
 if "chat_history" not in st.session_state:
@@ -28,7 +28,7 @@ if "chain" not in st.session_state:
 header = st.container()
 
 with header:
-    st.title("🤖 Test --By Juan Arfuch")
+    st.title("🤖 Chat with your videos --By Juan Arfuch")
     st.markdown(""" 
         Welcome to my unique ChatBot powered by LangChain, OpenAI, and Streamlit. This is a project for Makers, created with lots of ❤️ and ☕.
         This bot is not your ordinary bot, it's a super bot that uses the transcript of a YouTube video of your choice to answer your questions. 
@@ -122,3 +122,4 @@ st.markdown("""
 ---Built with ❤️ by [Juan Arfuch](https://github.com/juanarfuch) using [Streamlit](https://streamlit.io), [OpenAI](https://openai.com), and [LangChain](https://langchain.ai)
 This is a project for Makers! Check out my [GitHub](https://github.com/juanarfuch) for more cool projects!
 """)
+
