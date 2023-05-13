@@ -2,6 +2,7 @@
 import streamlit as st
 from utils.video_processing import load_transcript, split_transcript
 from utils.database import create_db
+###Trying another model
 ##from langchain.chat_models import ChatOpenAI
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
@@ -11,7 +12,7 @@ from utils.prompts import CONDENSE_PROMPT, QA_PROMPT
 openaiapikey = st.secrets["OPENAI_API_KEY"]
 
 # Set Streamlit page configuration
-st.set_page_config(page_title='PRUEBA', layout='wide')
+st.set_page_config(page_title='🧠MAKERS TEST🤖', layout='wide')
 
 # Initialize session states
 if "chat_history" not in st.session_state:
@@ -52,7 +53,8 @@ try:
                 st.session_state["video_loaded"] = True
                 ##Creating the conversational retrieval chain###
                 ###Setting the chat model
-                chat=OpenAI(temperature=0.2)
+                ##chat= ChatOpenAI(temperature=0.2, model_name="gpt-3.5-turbo")
+                chat=OpenAI(temperature=0.2, model_name="gpt-3.5-turbo")
                 question_generator = LLMChain(llm=chat, prompt=CONDENSE_PROMPT)
                 doc_chain = load_qa_chain(chat, prompt=QA_PROMPT)
                 st.session_state["chain"] = ConversationalRetrievalChain(
@@ -61,7 +63,7 @@ try:
                     combine_docs_chain=doc_chain,
                 )
             else:
-                st.warning("Please provide a valid YouTube URL, make sure you are including the video id")
+                st.warning("Please provide a valid YouTube URL, make sure you are including the video id, your url must be like this:https://www.youtube.com/watch?v=C_78DM8fG6E&t=7s")
     else:
         st.success("Video transcript is already loaded. You can start asking questions.")
 
@@ -120,3 +122,5 @@ st.markdown("""
 ---Built with ❤️ by [Juan Arfuch](https://github.com/juanarfuch) using [Streamlit](https://streamlit.io), [OpenAI](https://openai.com), and [LangChain](https://langchain.ai)
 This is a project for Makers! Check out my [GitHub](https://github.com/juanarfuch) for more cool projects!
 """)
+
+
