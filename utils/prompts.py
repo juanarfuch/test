@@ -1,11 +1,11 @@
 from langchain.prompts import PromptTemplate    
 
-CONDENSE_PROMPT ="""Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+CONDENSE_PROMPT =QA_PROMPT=PromptTemplate("""Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
         Chat History:
         {chat_history}
         Follow Up Input: {question}
-        Standalone question:"""
+        Standalone question:""")
 
 
 template = QA_PROMPT = """As an AI, answer this transcript-based question. If uncertain or off-topic, admit it.
