@@ -1,6 +1,6 @@
 from langchain.prompts import PromptTemplate    
 
-CONDENSE_PROMPT =QA_PROMPT=PromptTemplate("""Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
+CONDENSE_PROMPT =QA_PROMPT=PromptTemplate.from_template("""Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
         Chat History:
         {chat_history}
